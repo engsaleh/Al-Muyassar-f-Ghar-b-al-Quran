@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#184e3f">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="الميسر في غريب القرآن: عارض للمصحف بصفحاته وأسطره، مع تمييز الكلمات المشروحة وإظهار معناها عند النقر عليها.">
+  <title>الميسر في غريب القرآن</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./mushaf.css">
+  <link rel="stylesheet" href="./page-turn.css">
+  <link rel="preload" href="./fonts/UthmanicHafs-v-3.0.ttf" as="font" type="font/ttf" crossorigin>
+  <script type="module" src="./mushaf-app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mushaf-reader">انتقل إلى المصحف</a>
+  <header class="app-header">
+    <div class="header-content">
+      <a href="#page=1" class="brand" aria-label="الميسر في غريب القرآن، الصفحة الأولى"><span class="brand-icon" aria-hidden="true"><svg><use href="#i-book"></use></svg></span><span><strong>الميسر في غريب القرآن</strong><small>اقرأ الآية، وتعرّف إلى معاني كلماتها</small></span></a>
+      <nav class="header-nav" aria-label="التنقل الرئيسي">
+        <button class="nav-button" id="open-index" type="button"><svg aria-hidden="true"><use href="#i-list"></use></svg>الفهرس</button>
+        <button class="nav-button" id="open-search" type="button"><svg aria-hidden="true"><use href="#i-search"></use></svg>البحث</button>
+        <button class="nav-button" id="open-saved" type="button"><svg aria-hidden="true"><use href="#i-bookmark"></use></svg>المحفوظات<span id="saved-count" class="count-badge">٠</span></button>
+        <button class="nav-button" id="open-source" type="button">المصدر</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <div class="intro-strip"><p><span class="legend-swatch" aria-hidden="true"></span>اضغط على الكلمات <strong>الملوّنة</strong> لقراءة معناها</p><span class="edition-label">رواية حفص عن عاصم</span></div>
+    <section id="loading-state" class="state-panel" role="status"><span class="loader" aria-hidden="true"></span><h1>نحمّل المصحف ومعاني الكلمات…</h1><p>صفحات المصحف وشروح الغريب في مكان واحد.</p></section>
+    <section id="error-state" class="state-panel" hidden role="alert"><h1>تعذّر فتح المصحف</h1><p>تحقّق من اتصالك، ثم أعد المحاولة لتحميل النص وخطّه المطابق.</p><button id="retry" type="button" class="primary-button">إعادة المحاولة</button></section>
+
+    <div id="reader-layout" class="reader-layout" hidden>
+      <section id="mushaf-reader" class="mushaf-reader" aria-label="صفحة المصحف" tabindex="-1">
+        <div class="reader-toolbar">
+          <div class="surah-control"><label for="surah-select" class="sr-only">اختر السورة</label><span class="select-wrap"><select id="surah-select"></select><svg aria-hidden="true"><use href="#i-chevron"></use></svg></span></div>
+          <form id="page-form" class="page-control"><label for="page-input">الصفحة</label><input id="page-input" type="text" inputmode="numeric" maxlength="3" value="١" aria-label="رقم الصفحة من ١ إلى ٦٠٤"><span>من ٦٠٤</span><button class="text-button page-go" type="submit">انتقال</button></form>
+        </div>
+        <div class="paper-scroll" id="paper-scroll">
+          <div class="paper-deck" id="paper-deck">
+          <article id="mushaf-paper" class="mushaf-paper" aria-labelledby="paper-title">
+            <div class="paper-meta"><h1 id="paper-title">سورة الفاتحة</h1><span id="juz-label">الجزء ١</span></div>
+            <div class="mushaf-frame"><span class="frame-corner corner-tr" aria-hidden="true"></span><span class="frame-corner corner-tl" aria-hidden="true"></span><span class="frame-corner corner-br" aria-hidden="true"></span><span class="frame-corner corner-bl" aria-hidden="true"></span><div id="mushaf-rows" class="mushaf-rows"></div></div>
+            <div class="paper-bottom"><span class="paper-rule" aria-hidden="true"></span><span id="printed-page" class="printed-page">١</span><span class="paper-rule" aria-hidden="true"></span></div>
+          </article>
+          </div>
+        </div>
+        <div class="page-navigation"><button class="secondary-button" id="previous-page" type="button">الصفحة السابقة</button><button class="zoom-button" id="zoom-button" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-zoom"></use></svg><span>تكبير القراءة</span></button><button class="secondary-button" id="next-page" type="button">الصفحة التالية</button></div>
+        <p class="turn-guide" id="turn-guide"><svg aria-hidden="true"><use href="#i-book"></use></svg><span>اسحب الصفحة يمينًا للتالية، ويسارًا للسابقة</span></p>
+        <p class="page-hint" id="page-hint"></p>
+      </section>
+
+      <aside class="meaning-sidebar" aria-label="معنى الكلمة المختارة">
+        <div class="meaning-panel">
+          <div class="panel-header"><span class="panel-eyebrow">الميسر في غريب القرآن</span><svg aria-hidden="true"><use href="#i-book"></use></svg></div>
+          <div id="desktop-meaning" class="meaning-content"><div class="meaning-empty"><span class="touch-symbol" aria-hidden="true"><svg><use href="#i-touch"></use></svg></span><h2>لكل كلمةٍ معنى</h2><p>اختر كلمة ملوّنة من صفحة المصحف، وسيظهر هنا شرحها من «الميسر في غريب القرآن الكريم».</p><div class="empty-guide"><span></span>الكلمات الملوّنة لها شرح<span></span></div></div></div>
+        </div>
+        <div class="reading-note"><svg aria-hidden="true"><use href="#i-check"></use></svg><div><strong>النص الأصلي بين يديك</strong><p>شروح الغريب من إصدار مجمع الملك فهد، متاحة عبر إتقان لإدارة المحتوى.</p><button type="button" class="inline-link" id="sidebar-source">المصدر وتفاصيل العرض</button></div></div>
+      </aside>
+    </div>
+    <footer class="app-footer"><span>الميسر في غريب القرآن</span><p>النص والخط: مجمع الملك فهد · بيانات المصحف: Quran.ws · مورد الغريب: إتقان</p><button type="button" id="footer-source" class="inline-link">المصادر والتراخيص</button></footer>
+  </main>
+
+  <dialog id="meaning-dialog" class="meaning-dialog" aria-labelledby="meaning-dialog-title"><div class="dialog-header"><h2 id="meaning-dialog-title">معنى الكلمة</h2><button type="button" class="icon-button dialog-close" aria-label="إغلاق المعنى"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div><div id="mobile-meaning" class="meaning-content"></div></dialog>
+
+  <dialog id="index-dialog" class="standard-dialog index-dialog" aria-labelledby="index-title"><div class="dialog-header"><div><span class="panel-eyebrow">انتقل إلى موضع قراءتك</span><h2 id="index-title">فهرس السور</h2></div><button type="button" class="icon-button dialog-close" aria-label="إغلاق الفهرس"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div><label for="surah-query" class="sr-only">ابحث عن سورة أو رقمها</label><div class="search-field"><svg aria-hidden="true"><use href="#i-search"></use></svg><input id="surah-query" type="search" placeholder="ابحث عن سورة أو رقمها" autocomplete="off"></div><div id="surah-list" class="surah-list"></div></dialog>
+
+  <dialog id="search-dialog" class="standard-dialog search-dialog" aria-labelledby="search-title"><div class="dialog-header"><div><span class="panel-eyebrow" id="search-eyebrow">الكلمات وشروحها</span><h2 id="search-title">ابحث في غريب القرآن</h2></div><button type="button" class="icon-button dialog-close" aria-label="إغلاق البحث"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div><form id="search-form" class="search-field"><svg aria-hidden="true"><use href="#i-search"></use></svg><label for="global-query" class="sr-only">ابحث في الكلمات وشروحها</label><input id="global-query" type="search" placeholder="كلمة، أو شرح، أو مرجع مثل ٢:٢٥٥" autocomplete="off" maxlength="150"><button type="submit" class="primary-button">بحث</button></form><p id="search-description" class="dialog-description">ابحث دون الحاجة إلى التشكيل، ثم افتح النتيجة في صفحة المصحف.</p><div id="search-results" class="search-results"></div><button id="more-results" type="button" class="secondary-button full-width" hidden>عرض المزيد</button></dialog>
+
+  <dialog id="source-dialog" class="standard-dialog source-dialog" aria-labelledby="source-title"><div class="dialog-header"><div><span class="panel-eyebrow">الميسر في غريب القرآن</span><h2 id="source-title">المصادر وتفاصيل العرض</h2></div><button type="button" class="icon-button dialog-close" aria-label="إغلاق المصادر"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div><div class="source-sections"><section><h3>شروح غريب القرآن</h3><p>«الميسر في غريب القرآن الكريم»، للناشر مجمع الملك فهد لطباعة المصحف الشريف، متاح عبر إتقان لإدارة المحتوى. الإصدار 1.1.0، الأصل 145. تُعرض الشروح كما وردت في المورد.</p><a href="https://cms.itqan.dev/gallery/asset/145" target="_blank" rel="noopener noreferrer">صفحة المورد</a><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" dir="ltr">CC BY-NC-ND</a></section><section><h3>نص المصحف وخطّه</h3><p>نص حفص وخطّه من إصدارات مجمع الملك فهد، متاحان عبر مشروع Quran.ws. يُعرض النص بحروفه الأصلية وعلامات الوقف، باستخدام الخط الموافق للإصدار.</p><a href="https://github.com/quran-ws/quran-text" target="_blank" rel="noopener noreferrer">مصدر النص والبيانات</a><a href="./fonts/QURAN-WS-LICENSE.txt" target="_blank" rel="noopener noreferrer">حقوق الاستخدام</a></section><section><h3>الصفحات والأسطر</h3><p>يعتمد العارض تقسيم ٦٠٤ صفحات، وحدود أسطر موثقة في بيانات المصحف. يتكيّف حجم الخط والمسافات مع الشاشة؛ الواجهة محاكاة رقمية للتخطيط وليست صورة ممسوحة للمصحف.</p><p>بيانات استخراج الكلمات والتخطيط من Quran.ws / quran-text، بترخيص CC BY 4.0. بقي النص والخط دون تعديل.</p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">ترخيص بيانات Quran.ws</a></section><details class="mapping-notes"><summary>ملاحظات ربط المعاني بالكلمات</summary><p id="mapping-summary"></p><p>يوجد موضعان لكلمات متكررة يحتاجان إلى مراجعة تحديد الكلمة المقصودة: البقرة ٢٣٦ «قدره»، والروم ٥٤ «قوة». بقي الشرحان في البحث وشرح الآية، دون إسنادهما آليًا إلى كلمة بعينها. كما وُثّق تصحيح موضع «صبغةً» في البقرة ١٣٨ في طبقة الربط، دون تغيير نص المورد.</p></details><p class="source-privacy">المحفوظات وموضع القراءة محفوظان على هذا المتصفح. هذا تطبيق مستقل، ولا يمثل موقعًا رسميًا للناشر أو إتقان أو Quran.ws.</p></div></dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <noscript><style>#loading-state{display:none}</style><div class="state-panel">فعّل JavaScript لقراءة المصحف وفتح معاني الكلمات.</div></noscript>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C8 2 3 3 3 3v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2Zm0 0v16"></path></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7.2"></circle><path d="m16 16 4.5 4.5"></path></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4-6 4Z"></path></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 5h12M4 12h12M4 19h12M20 5h.1M20 12h.1M20 19h.1"></path></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"></rect><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 14 4-4m-5 6-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m0-2 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(1 1)"></path></symbol>
+    <symbol id="i-touch" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 0 1 4 0v6l2-1 5 3-1 7H9l-5-7a2 2 0 0 1 3-2l2 2M5 4 3 2m13 2 2-2M3 7H1m16 0h3"></path></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"></circle><path d="m15 15 6 6M7 10h6M10 7v6"></path></symbol>
+  </svg>
+</body>
+</html>

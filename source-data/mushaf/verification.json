@@ -1,0 +1,55 @@
+{
+  "verifiedAt": "2026-11-25T12:46:33.620150+00:00",
+  "counts": {
+    "surahs": 114,
+    "ayahs": 6236,
+    "words": 77432,
+    "pages": 604,
+    "quranTextLines": 8820,
+    "marks": 4517
+  },
+  "ayahLayoutComparison": {
+    "reference": "KFGQPC Hafs v2.0 hafsData_v2-0.csv",
+    "referenceCsvSha256": "7e259a10b02be2ab905d0a62ffa28f62a605cad2be9428323c09bd5a57181c75",
+    "comparedFields": [
+      "page",
+      "line_start",
+      "line_end"
+    ],
+    "ayahsCompared": 6236,
+    "mismatchCount": 0,
+    "mismatches": []
+  },
+  "pageAndLineCoverage": {
+    "allWordsCoveredExactlyOnce": true,
+    "pageStartsMatchSource": true,
+    "lineStartsMatchSource": true,
+    "allPageStartsAreAyahStarts": true,
+    "allPageStartsAreLineStarts": true,
+    "openingPages": [
+      1,
+      2
+    ],
+    "openingPageRowCount": 8,
+    "remainingPages": {
+      "first": 3,
+      "last": 604,
+      "rowCount": 15
+    },
+    "rowCountsIncludeSurahHeadingsAndUncountedBasmalas": true,
+    "pageCoverageProblems": [],
+    "wordRangeProblems": [],
+    "quranTextLineCountDistribution": {
+      "6": 1,
+      "7": 1,
+      "9": 4,
+      "11": 8,
+      "13": 83,
+      "14": 1,
+      "15": 506
+    }
+  },
+  "fontSha256MatchesSource": true,
+  "allMarkReferencesInRange": true,
+  "originalDataCopiedWithoutChanges": true
+}

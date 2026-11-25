@@ -1,0 +1,2 @@
+# Needed only by the font coverage verification test.
+fonttools==4.61.1

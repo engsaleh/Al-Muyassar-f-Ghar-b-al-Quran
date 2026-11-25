@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "name": "Hafs Mushaf text and printed-page line map",
+  "nameAr": "نص مصحف حفص وخريطة صفحات وأسطر المصحف المطبوع",
+  "riwayah": "حفص عن عاصم",
+  "numberingSystem": "kufi",
+  "dataset": {
+    "publisher": "Quran.ws / quran-ws",
+    "repository": "https://github.com/quran-ws/quran-text",
+    "sourceUrl": "https://github.com/quran-ws/quran-text/blob/main/data/mushaf/hafs.json",
+    "downloadUrl": "https://text.quran.ws/files/mushaf/hafs.json",
+    "format": "quran-mushaf",
+    "formatVersion": "1.0",
+    "generated": "2026-09-08",
+    "file": "mushaf.json",
+    "sha256": "bcfe3e9f2f3a9a57428c503c67667a5f32c2779ce20e90c7e553fae54a4abd26",
+    "bytes": 3125285,
+    "copiedByteForByte": true,
+    "license": "CC BY 4.0 for the Quran.ws-authored data work; Quran text and KFGQPC fonts retain the publisher terms reproduced in the license.",
+    "licenseUrl": "https://github.com/quran-ws/quran-text/blob/main/LICENSE",
+    "noticeUrl": "https://github.com/quran-ws/quran-text/blob/main/NOTICE.md"
+  },
+  "font": {
+    "publisher": "مجمع الملك فهد لطباعة المصحف الشريف",
+    "family": "KFGQPC HAFS Uthmanic Script",
+    "file": "../fonts/UthmanicHafs-v-3.0.ttf",
+    "sourceUrl": "https://github.com/quran-ws/quran-text/blob/main/data/fonts/UthmanicHafs-v-3.0.ttf",
+    "sha256": "5c47602425fb4190327ab9e1a2e8ed2f53dceaf595d8ccc29ac32b8b209ad398",
+    "bytes": 301396,
+    "copiedByteForByte": true,
+    "licenseFile": "../fonts/QURAN-WS-LICENSE.txt",
+    "licenseSha256": "b4538e26dd3a8f322ed1f791ad4802d8398b45fba5ea321b780fc49a0b287869",
+    "licenseNote": "The source license reproduces the KFGQPC usage terms permitting digital use, including websites and applications. The font itself is unmodified."
+  },
+  "layout": {
+    "file": "page-lines.json",
+    "sha256": "156635c60048070ba9fbcf4aed30d1291830e3ae8909b442c93d03cc276d1238",
+    "bytes": 658476,
+    "derivation": "Quran.ws word and line boundaries aligned to original KFGQPC Hafs v2.0 CSV page and line_start values.",
+    "referenceAssetUrl": "https://cms.itqan.dev/gallery/asset/138",
+    "referenceApiUrl": "https://api.cms.itqan.dev/cms-api/assets/138/",
+    "referenceDownloadUrl": "https://storage.cms.itqan.dev/media/uploads/assets/138/versions/tmp-4deda695/uthmanichafs_v2-0.zip",
+    "referenceArchiveSha256": "a7b0e5591945712ec5e4d6142938ae4d1e9b49bdc89dff06222789bfebdfd72c",
+    "referenceCsvSha256": "7e259a10b02be2ab905d0a62ffa28f62a605cad2be9428323c09bd5a57181c75",
+    "referenceAssetLicense": "CC-BY-NC-ND, as stated by Itqan CMS asset 138.",
+    "lineNumbers": "Actual row numbers from the printed-page layout; not array indices. Quran text rows exclude surah headings and uncounted basmalas.",
+    "headingPlacement": {
+      "surah1": "line - 1; verse 1 already contains the basmala",
+      "surah9": "line - 1; no basmala",
+      "allOtherSurahs": "heading at line - 2, basmala at line - 1"
+    },
+    "pageCount": 604,
+    "pageRows": {
+      "pages1And2": 8,
+      "pages3Through604": 15
+    }
+  },
+  "upstreamProvenance": {
+    "text": {
+      "package": "UthmanicHafs-v-3.0.zip",
+      "member": "UthmanicHafs-v-3.0.docx",
+      "release_year": 2026,
+      "sha256": "cdec7341b7c684e7b8dd469c4b68988914d2784e924c7e6cbb9cb4b57c24f013",
+      "origin": {
+        "recorded": false,
+        "portal": "https://qurancomplex.gov.sa",
+        "note": "Obtained from the publisher's site, qurancomplex.gov.sa, as the maintainer states. The URL of the file and the date it was fetched were not kept, and the KFGQPC archive does not hold it, so it is verifiable against the SHA-256 above but cannot be fetched again from a recorded address. On 2026-11-15 the site's fonts section offered no download («قريباً»). No URL is guessed. See docs/sources.md."
+      }
+    },
+    "policy": "within one riwāyah the later release is a correction; across riwāyāt nothing is assumed",
+    "layout": {
+      "package": "UthmanicHafs_v2-0.zip",
+      "member": "UthmanicHafs_v2-0 data/hafsData_v2-0.csv",
+      "release_year": 2022,
+      "sha256": "a7b0e5591945712ec5e4d6142938ae4d1e9b49bdc89dff06222789bfebdfd72c",
+      "origin": {
+        "recorded": true,
+        "url": "https://download.qurancomplex.gov.sa/resources_dev/UthmanicHafs_v2-0.zip",
+        "mirror": "https://cdn.quran.ws/KFGQPC/resources/quran-dev/uthmanic-hafs/UthmanicHafs_v2-0.zip",
+        "geo_restricted": "The official host serves Saudi Arabia only; from elsewhere it times out. Use the mirror, which is the same bytes.",
+        "archive": "https://github.com/quran-ws/kfgqpc-resources",
+        "archive_commit": "925b94346c2bd6a82df92a5ba3cfbec0bc63c512"
+      },
+      "used_for": [
+        "juz",
+        "line_check"
+      ]
+    },
+    "divisions": {
+      "evidence": "sources/divisions/hafs-rubu-al-hizb.json",
+      "sha256": "851f54e36d9ab72909b0c77ae9116072f2a8f86ab428e74689d98935c3a37a3a",
+      "print": {
+        "file": "standard39-2.pdf",
+        "sha256": "5c4297de1fb6b654f641eed33242408d89432cbecf8a96ff5d297cb45fea7f07",
+        "from": "https://cdn.quran.ws/KFGQPC/resources/quran-hafs/standard39-2/standard39-2.pdf"
+      },
+      "used_for": [
+        "hizb",
+        "rubu_al_hizb"
+      ]
+    }
+  },
+  "provenanceLimitations": [
+    "The v3 text/font source archive is identified by hash in the upstream data, but its original download URL and retrieval date were not recorded by the upstream maintainer. This preparation did not independently download v3 directly from the publisher.",
+    "The v2 layout source was downloaded through Itqan CMS and all 6236 ayah page/start-line/end-line tuples were independently compared with it."
+  ],
+  "counts": {
+    "surahs": 114,
+    "ayahs": 6236,
+    "words": 77432,
+    "pages": 604,
+    "quranTextLines": 8820,
+    "marks": 4517
+  },
+  "verification": {
+    "verifiedAt": "2026-11-25T12:46:33.620150+00:00",
+    "counts": {
+      "surahs": 114,
+      "ayahs": 6236,
+      "words": 77432,
+      "pages": 604,
+      "quranTextLines": 8820,
+      "marks": 4517
+    },
+    "ayahLayoutComparison": {
+      "reference": "KFGQPC Hafs v2.0 hafsData_v2-0.csv",
+      "referenceCsvSha256": "7e259a10b02be2ab905d0a62ffa28f62a605cad2be9428323c09bd5a57181c75",
+      "comparedFields": [
+        "page",
+        "line_start",
+        "line_end"
+      ],
+      "ayahsCompared": 6236,
+      "mismatchCount": 0,
+      "mismatches": []
+    },
+    "pageAndLineCoverage": {
+      "allWordsCoveredExactlyOnce": true,
+      "pageStartsMatchSource": true,
+      "lineStartsMatchSource": true,
+      "allPageStartsAreAyahStarts": true,
+      "allPageStartsAreLineStarts": true,
+      "openingPages": [
+        1,
+        2
+      ],
+      "openingPageRowCount": 8,
+      "remainingPages": {
+        "first": 3,
+        "last": 604,
+        "rowCount": 15
+      },
+      "rowCountsIncludeSurahHeadingsAndUncountedBasmalas": true,
+      "pageCoverageProblems": [],
+      "wordRangeProblems": [],
+      "quranTextLineCountDistribution": {
+        "6": 1,
+        "7": 1,
+        "9": 4,
+        "11": 8,
+        "13": 83,
+        "14": 1,
+        "15": 506
+      }
+    },
+    "fontSha256MatchesSource": true,
+    "allMarkReferencesInRange": true,
+    "originalDataCopiedWithoutChanges": true
+  },
+  "indexing": {
+    "wordIndices": "Zero-based. lastWordExclusive is exclusive.",
+    "startsArrays": "Zero-based starts with no sentinel; use words.length as the final end.",
+    "ayahLookup": "surahs[surah-1].first_ayah + ayah - 1",
+    "verseWordPosition": "One-based within a verse; global index = ayah_starts[ayahIndex] + position - 1.",
+    "marks": "Each [wordIndex, markTypeIndex] references mark_types. Preserve order. Append side=after directly without a space; put side=before before the word with a space. Marks are not word positions.",
+    "verseEndMarkers": "Verse-end numerals are not entries in words and do not increment word positions.",
+    "numbering": "Upstream cross-riwayah numbering; do not use it as the glossary word position."
+  }
+}

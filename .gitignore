@@ -1,0 +1,16 @@
+node_modules/
+.openai/
+.sites/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+*.zip
+*.tar.gz
+*.log
+.env
+.env.*
+!.env.example
+dist/__qa_*

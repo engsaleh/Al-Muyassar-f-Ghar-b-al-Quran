@@ -1,0 +1,10 @@
+{
+  "name": "muyassar-ghareeb-al-quran",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Arabic reader for the original Muyassar of Ghareeb Al Quran resource from Itqan CMS.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  }
+}
