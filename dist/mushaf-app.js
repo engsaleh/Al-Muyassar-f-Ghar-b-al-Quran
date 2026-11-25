@@ -367,7 +367,6 @@ async function loadApp() {
     entries = glossaryEntries.records; entryMap = new Map(entries.map(entry => [recordKey(entry), entry])); searchIndex = createSearchIndex(entries);
     const saved = readStorage(SAVED_KEY, []); savedKeys = new Set(Array.isArray(saved) ? saved.filter(key => typeof key === 'string' && hasExplanation(entryMap.get(key))) : []);
     $('surah-select').replaceChildren(...mushaf.surahs.map(surah => { const option = element('option', null, `سورة ${surah.name_ar}`); option.value = String(surah.number); return option; }));
-    $('mapping-summary').textContent = `تتضمن الخريطة ${arabicNumber(links.metadata.linkedGlossCount)} شرحًا مرتبطًا بـ${arabicNumber(links.metadata.highlightedWordCount)} كلمة. وقد روجعت المواضع مقابل نص المصحف مع حفظ الشروح الأصلية.`;
     $('loading-state').hidden = true; $('reader-layout').hidden = false;
     const parsed = parseMushafLocation(location.hash, model);
     const storedPage = readStorage(PAGE_KEY, 1);
@@ -399,7 +398,7 @@ $('open-index').addEventListener('click', () => { if (!requireData()) return; $(
 $('surah-query').addEventListener('input', renderSurahIndex);
 $('open-search').addEventListener('click', () => openSearch('search'));
 $('open-saved').addEventListener('click', () => openSearch('saved'));
-['open-source', 'sidebar-source', 'footer-source'].forEach(id => $(id).addEventListener('click', () => $('source-dialog').showModal()));
+['open-source', 'footer-source'].forEach(id => $(id).addEventListener('click', () => $('source-dialog').showModal()));
 $('search-form').addEventListener('submit', event => { event.preventDefault(); clearTimeout(searchTimer); performSearch({direct: true}); });
 $('global-query').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(performSearch, 220); });
 $('more-results').addEventListener('click', () => { const oldLimit = resultLimit; resultLimit += RESULT_PAGE_SIZE; renderSearchResults(); $('search-results').children[oldLimit]?.focus(); });
